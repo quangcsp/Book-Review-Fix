@@ -1,0 +1,9 @@
+<h2>Edit View</h2>
+<%= simple_form_for @book, :html => {:multipart => true } do |f| %>
+    <%= f.input :title, label: "Book Title" %>
+    <%= f.input :description %>
+    <%= f.input :author %>
+    <%= f.select :category_id, @categories %>
+    <%= simple_format "\n" %>
+    <%= f.button :submit %>
+<% end %>

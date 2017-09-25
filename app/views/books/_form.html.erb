@@ -1,0 +1,8 @@
+<%= simple_form_for @book do |f| %>
+    <%= f.input :title, label: "Book Title" %>
+    <%= f.input :description %>
+    <%= f.input :author %>
+    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
+    <%= simple_format "\n" %>
+    <%= f.button :submit %>
+<% end %>
