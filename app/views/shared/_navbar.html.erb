@@ -7,11 +7,10 @@
     </div>
 
     <ul class="nav navbar-nav">
-      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <% if user_signed_in? %>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-      <% else %>
+
+      <% if user_signed_in? == false %>
           <li><%= link_to "Log In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
       <% end %>
     </ul>
 
@@ -38,8 +37,7 @@
 
               <li class="round-image-50"><%= image_tag(current_user.avatar.url(:medium)) %></li>
 
-          <% else %>
-              <li><%= link_to 'Login', new_user_session_path %></li>
+
           <% end %>
       <% end %>
 
