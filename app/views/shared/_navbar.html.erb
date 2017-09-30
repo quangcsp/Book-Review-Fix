@@ -32,11 +32,19 @@
           <li><%= link_to "Add Book", new_book_path %></li>
           <li><%= link_to "Add Category", new_category_path %></li>
           <% if current_user %>
-              <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
-              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 
-              <li class="round-image-50"><%= image_tag(current_user.avatar.url(:medium)) %></li>
 
+              <li class="dropdown">
+                <a class="dropdown-toggle navbar-user-avatar" role="button" id="menu1" data-toggle="dropdown">
+                  <%= image_tag(current_user.avatar.url(:medium), :class => "round-image-50") %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+                  <li role="presentation" class="divider"></li>
+                  <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
 
           <% end %>
       <% end %>
