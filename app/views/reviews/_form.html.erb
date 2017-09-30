@@ -6,9 +6,29 @@
     <%= f.button :submit, :class => "btn-custom2" %>
 <% end %>
 
+<script type='text/javascript'>
+
+    (function()
+    {
+        if( window.localStorage )
+        {
+            if( !localStorage.getItem('firstLoad') )
+            {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+            }
+            else
+                localStorage.removeItem('firstLoad');
+        }
+    })();
+
+</script>
+
 <script>
     $('#rating-form').raty({
         path: '/assets/',
         scoreName: 'review[rating]'
     });
+
 </script>
+
