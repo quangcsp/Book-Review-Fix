@@ -23,3 +23,4 @@
 .byebug_history
 *.PNG
 *.png
+*.sqlite3
