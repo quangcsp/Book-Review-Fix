@@ -4,17 +4,31 @@
     <h1>There are no books currently in this category</h1>
 
 <% else %>
-<div class="row">
+	<% @books.in_groups_of(2, false).each do |group| %>
+		<div class="row">
 
-  <% @books.each do |book| %>
-      <div class="col-md-3">
-      <a href="/books/<%= book.id %>">
-        <%= image_tag book.book_img.url(:book_index), class: "book" %>
-      </a>
-      </div>
-  <% end %>
+		  <% group.each do |book| %>
+		  			<div class="col-md-6">
+		  				<div class="row box">
+				      		<div class="col-md-8"  style="padding-left: 0px;">
+				      			<a href="/books/<%= book.id %>">
+				        		<%= image_tag book.book_img.url(:book_index), class: "book" %>
+				        		</a>
+				        	</div>
+				      		<div class="col-md-4">
+				      			<div class="book-contentinfo">
+					      			<h3><%= book.title %></h3>
+					      			<p><%= book.description %></p>
+					      		</div>
+					      		<div class="book-authorinfo">
+					      			<p>Author: <%= book.author %></p>
+					      		</div>
+				      		</div>
+				      	</div>
+				     </div>
+		  <% end %>
 
-</div>
-
+		</div>
+	<% end %>
 <% end %>
 
