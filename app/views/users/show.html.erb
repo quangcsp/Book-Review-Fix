@@ -1,1 +1,17 @@
-<%= @user.name %>
+
+<div class="row centered">
+  <div class="col-md-2">
+    <%= image_tag @user.avatar.url(:medium), class: "round-image-150" %>
+  </div>
+  <div class="col-md-6">
+    <h1><%= @user.name %></h1>
+    <h3>
+      <span class="glyphicon glyphicon-envelope"><%= @user.email %></span>
+    </h3>
+    <h3>
+      <i class="fa fa-birthday-cake"><%= @user.date_of_birth.day %>/<%= @user.date_of_birth.month %>/<%=@user.date_of_birth.year %></i>
+    </h3>
+  </div>
+
+</div>
+

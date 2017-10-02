@@ -12,3 +12,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# ▼ [Vu] Add path for gem 'font-awesome-sass'
+Rails.application.config.assets.precompile += %w( fontawesome-webfont.ttf )
+Rails.application.config.assets.precompile += %w( fontawesome-webfont.svg )
+# ▲ https://stackoverflow.com/questions/33797046/rails-admin-file-to-import-not-found-or-unreadable-font-awesome
