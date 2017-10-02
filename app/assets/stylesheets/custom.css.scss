@@ -1,7 +1,7 @@
 // book_img resize  using in books/index.html.erb
 .book {
-  height: 350px;
-  width: 250px;
+	height: 100%;
+  	width: 100%;
 }
 
 // book_img resize  using in books/show.html.erb
@@ -26,4 +26,23 @@
 .navbar-user-avatar {
   padding: 0px !important;
   background-color: unset !important;
+}
+
+.book-contentinfo {
+	height: 275px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.book-authorinfo {
+	height: 60px;
+}
+
+.box {
+	align: left;
+	border: 2px solid grey;
+    height: 350px;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
