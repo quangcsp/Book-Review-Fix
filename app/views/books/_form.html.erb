@@ -1,4 +1,16 @@
 <%= simple_form_for @book, :html => { :multipart => true } do |f| %>
+
+    <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
     <%= f.input :title, label: "Book Title" %>
     <%= f.input :description %>
     <%= f.input :author %>
@@ -6,7 +18,14 @@
     <%= simple_format "\n" %>
     <b>Book's Category:</b>
     <%= simple_format "\n" %>
-    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
+    <% categories.each do |categories| %>
+      <% if @book.categories.pluck(:id).include?(categories.id) %>
+        <%= f.check_box :category_id, {multiple: true, checked: true}, categories.id, nil%>
+      <% else %>
+        <%= f.check_box :category_id, {multiple: true}, categories.id, nil%>
+      <% end %>
+      <%= categories.name %>
+    <% end %>
     <%= simple_format "\n" %>
     <%= f.button :submit %>
 <% end %>
