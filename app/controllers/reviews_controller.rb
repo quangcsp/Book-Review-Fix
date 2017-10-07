@@ -1,10 +1,14 @@
 class ReviewsController < ApplicationController
   before_action :find_book
-  before_action :find_review, only: [:edit, :update, :destroy]
+  before_action :find_review, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, only: [:new, :edit]
 
   def new
     @review = Review.new
+  end
+
+  def show
+    @new_comment = Comment.build_from(@review, current_user.id, "")
   end
 
   def create

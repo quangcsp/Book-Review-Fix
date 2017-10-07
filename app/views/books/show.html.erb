@@ -10,7 +10,11 @@
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
     <span>Based on <%= @book.reviews.count %> reviews</span>
     <p><%= @book.description %></p>
-    <h4>Category: <%= @book.category.name %></h4>
+    <h4>Category:
+      <% @book.categories.all.each do |category| %>
+      <%= link_to category.name, books_path(category: category.name) %>
+    <% end %>
+    </h4>
   </div>
 </div>
 <div class="row">
@@ -29,6 +33,24 @@
     <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?" } %>
   <% end %>
 <% end %>
+
+<script type='text/javascript'>
+
+    (function()
+    {
+        if( window.localStorage )
+        {
+            if( !localStorage.getItem('firstLoad') )
+            {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+            }
+            else
+                localStorage.removeItem('firstLoad');
+        }
+    })();
+
+</script>
 
 <script>
     $('.review-rating').raty({

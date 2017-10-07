@@ -17,6 +17,7 @@ $gray-medium-light: #eaeaea;
   width: 325px;
 }
 
+//user's avatar at nav_bar
 .round-image-50 {
   background-color: white;
   border: 1px solid #d9d9d9;
@@ -25,6 +26,18 @@ $gray-medium-light: #eaeaea;
   -webkit-border-radius: 25px;
   height: 50px;
   width: 50px;
+  overflow: hidden;
+  text-align: center;
+  img { width: 100% }
+}
+
+//user's avatar at profile
+.round-image-150 {
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px;
   overflow: hidden;
   text-align: center;
   img { width: 100% }
@@ -57,7 +70,7 @@ $gray-medium-light: #eaeaea;
 /* footer */
 
 footer {
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 0px;
   right: 0px;
@@ -85,4 +98,33 @@ footer {
       margin-left: 15px;
     }
   }
+}
+
+.comments-header {
+  border-bottom: 1px dotted gray;
+  margin-bottom: 10px;
+}
+
+.comments-container {
+  p {
+    margin-bottom: 0px;
+  }
+  .comment-nav {
+    margin-left: 5px;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 10px;
+      font-weight: bold;
+      color: #888;
+    }
+  }
+}
+
+.reply-form {
+  display: none;
+}
+
+.comments-show {
+  margin-left: 25px;
 }

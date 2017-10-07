@@ -10,6 +10,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'devise', '~> 4.3'
 gem 'paperclip', '~> 5.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'font-awesome-sass', '~> 4.7'
+gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
 # ▲
 
 
