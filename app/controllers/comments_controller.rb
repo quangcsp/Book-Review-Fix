@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+  end
+
   def create
     commentable = commentable_type.constantize.find(commentable_id)
     @comment = Comment.build_from(commentable, current_user.id, body)
 
-      if @comment.save
+      if @comment.save(validate: false)
         make_child_comment
-        redirect_to book_review_path(@book, review)
       else
         render 'new'
       end
