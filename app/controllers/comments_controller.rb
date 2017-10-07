@@ -5,14 +5,12 @@ class CommentsController < ApplicationController
     commentable = commentable_type.constantize.find(commentable_id)
     @comment = Comment.build_from(commentable, current_user.id, body)
 
-    respond_to do |format|
       if @comment.save
         make_child_comment
-        format.html  { redirect_to(:back, :notice => 'Comment was successfully added.') }
+        redirect_to book_review_path(@book, review)
       else
-        format.html  { render :action => "new" }
+        render 'new'
       end
-    end
   end
 
   private
