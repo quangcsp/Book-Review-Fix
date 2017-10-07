@@ -7,6 +7,11 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
+  def show
+    @review = Review.find(params[:id])
+    @new_comment = Comment.build_from(@review, current_user.id, "")
+  end
+
   def create
     @review = Review.new(review_params)
     @review.book_id = @book.id
