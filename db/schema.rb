@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171004124814) do
+=======
+ActiveRecord::Schema.define(version: 20171006021332) do
+
+  create_table "book_categories", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_categories_on_book_id"
+    t.index ["category_id"], name: "index_book_categories_on_category_id"
+  end
+>>>>>>> 505f329785b6d43ed7b609fd8667f61a3fde5686
 
   create_table "books", force: :cascade do |t|
     t.string "title"
