@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     commentable = commentable_type.constantize.find(commentable_id)
     @comment = Comment.build_from(commentable, current_user.id, body)
 
-      if @comment.save(validate: false)
+      if @comment.save
         make_child_comment
       else
         render 'new'

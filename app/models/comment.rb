@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :review
+  belongs_to :review, optional: true
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, :presence => true
