@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_book
-  before_action :find_review, only: [:edit, :update, :destroy]
+  before_action :find_review, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, only: [:new, :edit]
 
   def new
@@ -8,7 +8,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id])
     @new_comment = Comment.build_from(@review, current_user.id, "")
   end
 
