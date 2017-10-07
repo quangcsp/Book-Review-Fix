@@ -8,13 +8,15 @@ class CommentsController < ApplicationController
     commentable = commentable_type.constantize.find(commentable_id)
     @comment = Comment.build_from(commentable, current_user.id, body)
 
+    respond_to do |format|
       if @comment.save
         make_child_comment
+        format.html  { redirect_back fallback_location: book_review_comments_path }
       else
-        render 'new'
+        format.html  { render 'new' }
       end
+    end
   end
-
   private
 
   def comment_params
