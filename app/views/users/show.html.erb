@@ -9,7 +9,11 @@
       <span class="glyphicon glyphicon-envelope"><%= @user.email %></span>
     </h3>
     <h3>
-      <i class="fa fa-birthday-cake"><%= @user.date_of_birth.day %>/<%= @user.date_of_birth.month %>/<%=@user.date_of_birth.year %></i>
+      <% if @user.date_of_birth.present? %>
+        <i class="fa fa-birthday-cake"><%= @user.date_of_birth.day %>/<%= @user.date_of_birth.month %>/<%=@user.date_of_birth.year %></i>
+      <% else %>
+        <i class="fa fa-birthday-cake"> No Infomation </i>
+      <% end %>
     </h3>
   </div>
 
