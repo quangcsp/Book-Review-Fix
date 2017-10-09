@@ -24,3 +24,4 @@
 *.PNG
 *.png
 *.sqlite3
+*.sqlite3.orig
