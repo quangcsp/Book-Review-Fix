@@ -15,18 +15,28 @@
       <%= link_to category.name, books_path(category: category.name) %>
     <% end %>
     </h4>
+
+    <%= link_to 'Back', root_path, :class => "btn btn-primary button-edit", :id => "button-edit" %>
+
+    <% if user_signed_in? %>
+      <% if @book.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_book_path(@book), :class => "btn btn-primary", :id => "button-edit" %>
+        <%= link_to 'Delete', book_path(@book), :class => "btn btn-danger", :id => "button-edit", method: :delete, data: {confirm: "Are you sure?" } %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <%= render @book.reviews %>
-    <div>
-      <%= link_to "Add Review", new_book_review_path(@book) %>
+  <div class="col-md-4" style="word-wrap: break-word;">
+    <div class="margin-right">
+        <%= link_to raw("<i class=\"glyphicon glyphicon-pencil\"> Add Review</i>"), new_book_review_path(@book), :id => "button-edit", :class => "btn btn-primary button-edit right" %>
     </div>
+    <br><br>
+    <%= render @book.reviews %>
   </div>
 </div>
-<%= link_to 'Back', root_path %>
+
 
 <% if user_signed_in? %>
   <% if can? :update, @book %>
@@ -36,6 +46,7 @@
     <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?" } %>
   <% end %>
 <% end %>
+
 
 <script type='text/javascript'>
 

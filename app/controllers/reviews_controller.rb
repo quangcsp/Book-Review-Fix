@@ -3,6 +3,10 @@ class ReviewsController < ApplicationController
   before_action :find_review, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, only: [:new, :edit]
 
+  def index
+    @review = Review.all
+  end
+
   def new
     @review = Review.new
   end

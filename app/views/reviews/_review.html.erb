@@ -1,12 +1,17 @@
 <div class="review-rating" data-score="<%= review.rating  %>"></div>
-<p><%= review.comment %> - <%= review.user.name %></p>
-<%= link_to "Comment", book_review_path(@book, review) %>
+	<%= review.comment %> - <%= review.user.name %>
+
+	<br>
+
+<%= link_to "Comment", book_review_path(@book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit" %>
 <% if user_signed_in? %>
+
   <% if can? :update, review %>
     <%= link_to "Edit", edit_book_review_path(review.book, review) %>
   <% end %>
   <% if can? :destroy, review %>
   	<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"} %>
   <% end %>
+
 <%end %>
 
