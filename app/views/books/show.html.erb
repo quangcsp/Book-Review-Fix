@@ -38,6 +38,16 @@
 </div>
 
 
+<% if user_signed_in? %>
+  <% if can? :update, @book %>
+    <%= link_to 'Edit', edit_book_path(@book) %>
+  <% end %>
+  <% if can? :destroy, @book %>
+    <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?" } %>
+  <% end %>
+<% end %>
+
+
 <script type='text/javascript'>
 
     (function()
