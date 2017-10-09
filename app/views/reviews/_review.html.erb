@@ -1,14 +1,15 @@
 <div class="review-rating" data-score="<%= review.rating  %>"></div>
-<p><%= review.comment %> - <%= review.user.name %></p>
+	<%= review.comment %> - <%= review.user.name %>
 
-    <%= review.comment_threads.collect(&:body) %><br>
+	<br>
 
-
-<%= link_to "Comment", book_review_path(@book, review) %>
+<%= link_to "Comment", book_review_path(@book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit" %>
 <% if user_signed_in? %>
     <% if review.user_id == current_user.id %>
-      <%= link_to "Edit", edit_book_review_path(review.book, review) %>
-      <%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= link_to "Edit", edit_book_review_path(review.book, review), :class => "btn btn-primary btn-sm button-edit", :id => "button-edit" %>
+      <%= link_to "Delete", book_review_path(review.book, review),:class => "btn btn-danger btn-sm button-edit", :id => "button-edit",  method: :delete, data: {confirm: "Are you sure?"} %>
+      <br><br>
     <% end %>
+
 <%end %>
 
