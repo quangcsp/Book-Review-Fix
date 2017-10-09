@@ -8,7 +8,9 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @reviews = Review.where(:book_id => @book)
     @new_comment = Comment.build_from(@review, current_user.id, "")
+    @all_comments = @review.comment_threads
   end
 
   def create
