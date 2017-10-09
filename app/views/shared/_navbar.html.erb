@@ -29,8 +29,12 @@
 
 
       <% if user_signed_in? %>
+        <% if can? :create, Book %>
           <li><%= link_to "Add Book", new_book_path %></li>
+        <% end %>
+        <% if can? :create, Category %>
           <li><%= link_to "Add Category", new_category_path %></li>
+        <% end %>
           <% if current_user %>
 
 

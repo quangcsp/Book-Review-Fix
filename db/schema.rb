@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006021332) do
+ActiveRecord::Schema.define(version: 20171009044848) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20171006021332) do
     t.string "name"
     t.datetime "date_of_birth"
     t.boolean "is_male"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

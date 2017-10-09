@@ -29,8 +29,10 @@
 <%= link_to 'Back', root_path %>
 
 <% if user_signed_in? %>
-  <% if @book.user_id == current_user.id %>
+  <% if can? :update, @book %>
     <%= link_to 'Edit', edit_book_path(@book) %>
+  <% end %>
+  <% if can? :destroy, @book %>
     <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?" } %>
   <% end %>
 <% end %>
