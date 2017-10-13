@@ -15,7 +15,8 @@ gem 'font-awesome-sass', '~> 4.7'
 gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
 # ▲
 
-
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record

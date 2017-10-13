@@ -1,3 +1,5 @@
+<p id="alert", style="color:red;font-size:36px"><%= alert %></p>
+
 <h1 class="current-category"><%= params[:category] %></h1>
 <% if @books.count == 0 %>
 
@@ -32,8 +34,9 @@
 				      	</div>
 				     </div>
 		  <% end %>
-		</div>
+    </div>
 	<% end %>
+  <%= will_paginate %>
 <% end %>
 
 <script>
