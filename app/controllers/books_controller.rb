@@ -17,10 +17,10 @@ class BooksController < ApplicationController
   end
 
   def show
+    @review = @book.reviews.paginate(page: params[:page], per_page: 3)
     if @book.reviews.blank?
       @average_review = 0
     else
-      @review = @book.reviews.paginate(page: params[:page], per_page: 3)
       @average_review = @book.reviews.average(:rating)
     end
   end
