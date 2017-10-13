@@ -5,15 +5,7 @@
     <div class="navbar-header" >
       <%= link_to "Book Review", root_path, class: "navbar-brand" %>
     </div>
-
-    <ul class="nav navbar-nav">
-
-      
-
-    </ul>
-
     <ul class="nav navbar-nav navbar-right">
-      
       <li>
         <form class="navbar-form" role="search">
         <div class="input-group">
@@ -34,12 +26,14 @@
           <% end %>
         </ul>
       </li>
-
       <% if user_signed_in? == false %>
           <li><%= link_to "Log In", new_user_session_path %></li>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
       <% end %>
       <% if user_signed_in? %>
+        <% if can? :manage, User %>
+          <li><%= link_to "Manage user", users_path %></li>
+        <% end %>
         <% if can? :create, Book %>
           <li><%= link_to "Add Book", new_book_path %></li>
         <% end %>
@@ -47,8 +41,6 @@
           <li><%= link_to "Add Category", new_category_path %></li>
         <% end %>
           <% if current_user %>
-
-
               <li class="dropdown">
                 <a class="dropdown-toggle navbar-user-avatar" role="button" id="menu1" data-toggle="dropdown">
                   <%= image_tag(current_user.avatar.url(:medium), :class => "round-image-50") %>

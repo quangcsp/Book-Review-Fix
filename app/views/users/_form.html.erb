@@ -1,0 +1,8 @@
+<%= simple_form_for user, url: user_path(user) do |f| %>
+  <% if user.admin %>
+    <%= f.select :admin, options_for_select([["Admin", true], ["Regular", false]])%>
+  <% else %>
+    <%= f.select :admin, options_for_select([["Admin", true], ["Regular", false]],selected: user.admin)%>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>
