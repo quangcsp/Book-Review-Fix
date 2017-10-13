@@ -5,10 +5,11 @@ class BooksController < ApplicationController
   def index
     if params[:category].blank?
       @books = Book.all.order("created_at DESC")
+      @books = Book.paginate(page: params[:page], per_page: 6).order("created_at DESC")
     else
       @category_id = Category.find_by(name: params[:category])
       # @books = Book.where(:category_id => @category_id).order("created_at DESC")
-      @books = @category_id.books
+      @books = @category_id.books.paginate(page: params[:page],per_page: 2)
     end
   end
 

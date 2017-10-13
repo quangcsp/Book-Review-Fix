@@ -38,7 +38,8 @@
       <% else %>
           <h4><%= "You have reviewed this book" %></h4>
       <% end %>
-      <%= render @book.reviews %>
+      <%= render @review %>
+      <%= will_paginate @review%>
   <% else %>
     <h4><%= "You have to login to review" %></h4>
   <% end %>
