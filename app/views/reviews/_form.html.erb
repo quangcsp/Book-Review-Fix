@@ -2,7 +2,7 @@
     <div id="rating-form">
       <label>Rating</label>
     </div>
-    <%= f.input :comment %>
+    <%= f.text_area :comment, class: 'form-control' ,:required => true %>
     <%= f.button :submit, :class => "btn-custom2" %>
 <% end %>
 
@@ -27,7 +27,8 @@
 <script>
     $('#rating-form').raty({
         path: '/assets/',
-        scoreName: 'review[rating]'
+        scoreName: 'review[rating]',
+        score: 5
     });
 
 </script>
