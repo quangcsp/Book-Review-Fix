@@ -17,6 +17,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      @flag = Review.where(:book_id => @book, :user_id => current_user.id)
+    end
     if @book.reviews.blank?
       @average_review = 0
     else

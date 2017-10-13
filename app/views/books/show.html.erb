@@ -28,12 +28,20 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4" style="word-wrap: break-word;">
-    <div class="margin-right">
+  <% if user_signed_in? %>
+    <% if @flag.empty? %>
+      <div class="col-md-4" style="word-wrap: break-word;">
+      <div class="margin-right">
         <%= link_to raw("<i class=\"glyphicon glyphicon-pencil\"> Add Review</i>"), new_book_review_path(@book), :id => "button-edit", :class => "btn btn-primary button-edit right" %>
-    </div>
-    <br><br>
-    <%= render @book.reviews %>
+      </div>
+      <br><br>
+      <% else %>
+          <h4><%= "You have reviewed this book" %></h4>
+      <% end %>
+      <%= render @book.reviews %>
+  <% else %>
+    <h4><%= "You have to login to review" %></h4>
+  <% end %>
   </div>
 </div>
 
