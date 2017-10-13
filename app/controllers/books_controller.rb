@@ -18,6 +18,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @review = @book.reviews.paginate(page: params[:page], per_page: 3)
     if user_signed_in?
       @flag = Review.where(:book_id => @book, :user_id => current_user.id)
     end
