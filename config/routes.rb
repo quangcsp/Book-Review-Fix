@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+  
+  resources :votes, only: [:create, :destroy]
 
   root 'books#index'
 end
