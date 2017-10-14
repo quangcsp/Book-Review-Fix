@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :categories
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
 
   resources :books do
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
-
 
   root 'books#index'
 end
