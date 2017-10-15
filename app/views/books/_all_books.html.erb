@@ -1,6 +1,7 @@
 <% @categories.each do |category| 
 	category_Arr = (0..@categories.count)
-	books = category.books.paginate(page: params[category.name],per_page: 4)%>
+	#books = category.books.paginate(page: params[category.name],per_page: 4)
+	books = category.books.limit(4)%>
 	<div class="page-header"><h3><%= category.name %></h3></div>
 	<% if books.count == 0 %>
 
@@ -37,6 +38,10 @@
 			  <% end %>
 	    </div>
 		<% end %>
-	  <%= will_paginate books, :param_name => category.name %>
+		<% if category.books.count > 4 %>
+	  <%= link_to "<div class='btn btn-primary float-right'>See more</div>".html_safe, books_path:category, :category => category.name %>
+	  	<%end%>
 	<% end %>
 <% end %>
+<br>
+<%= will_paginate @categories %>
