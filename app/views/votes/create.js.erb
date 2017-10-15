@@ -1,0 +1,3 @@
+$("#like<%=@review.id%>").html('<%= j render "reviews/unlike", like: Vote\
+		.find_by(votable_id: @review.id, voter_id: current_user.id) %>');
+$("#numberoflikes<%=@review.id%>").html('<%= j render "reviews/stats", review: @review %>');

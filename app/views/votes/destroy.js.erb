@@ -1,0 +1,2 @@
+$("#like<%=@review.id%>").html('<%= j render "reviews/like", review: @review %>');
+$("#numberoflikes<%=@review.id%>").html('<%= j render "reviews/stats", review: @review %>');
