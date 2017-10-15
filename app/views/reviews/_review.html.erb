@@ -2,9 +2,21 @@
 	<%= review.comment %> - <%= review.user.email %>
 
 	<br>
+<div id="numberoflikes<%= review.id %>">
+	<%= render "reviews/stats", review: review %>
+</div>
 
-<%= link_to "Comment", book_review_path(@book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit" %>
 <% if user_signed_in? %>
+	<section id="like<%= review.id %>">
+	  <% if current_user.liked? review  %>
+	  	<% like = Vote.find_by votable_id: review.id, voter_id: current_user.id %>
+	  	<%= render "reviews/unlike", like: like %>
+	  <% else %>
+	    <%= render "reviews/like", review: review %>
+	 	<% end %>
+ 	</section>
+
+	<%= link_to "Comment", book_review_path(@book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit" %>
 
   <% if can? :update, review %>
     <%= link_to "Edit", edit_book_review_path(review.book, review) %>
@@ -12,6 +24,5 @@
   <% if can? :destroy, review %>
   	<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"} %>
   <% end %>
-
 <%end %>
 
