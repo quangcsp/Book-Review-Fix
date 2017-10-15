@@ -10,6 +10,7 @@ class BooksController < ApplicationController
       @category_id = Category.find_by(name: params[:category])
       # @books = Book.where(:category_id => @category_id).order("created_at DESC")
       @books = @category_id.books.paginate(page: params[:page],per_page: 2)
+      @category_name = @category_id.name
     end
   end
 
