@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :check_role, only: [:index]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 3)
+    # @users = User.paginate(page: params[:page], per_page: 3)
+    @users = User.all
   end
 
   def show
