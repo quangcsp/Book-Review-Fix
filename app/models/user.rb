@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_attached_file :avatar
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: ':placeholder'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
@@ -20,16 +20,18 @@ class User < ApplicationRecord
     !admin
   end
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.avatar = URI.parse(auth.info.image) if auth.info.image? # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(email: data['email']).first
+
+    # Uncomment the section below if you want users to be created if they don't exist
+    unless user
+        user = User.create(name: data['name'],
+           email: data['email'],
+           password: Devise.friendly_token[0,20]
+        )
     end
+    user
   end
 
   def self.new_with_session(params, session)
@@ -49,5 +51,7 @@ class User < ApplicationRecord
     # avatar_content_type == "image/png"
     @avatar_remote_url = url_value
   end
+
+
 
 end

@@ -13,7 +13,9 @@ gem 'paperclip', '~> 5.1' #Set default img:https://stackoverflow.com/questions/9
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'font-awesome-sass', '~> 4.7'
 gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
+gem 'hirb', '~> 0.7.3'
 gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-google-oauth2', '~> 0.5.2'
 # ▲
 
 gem 'will_paginate',           '3.1.5'
