@@ -1,10 +1,17 @@
 <p id="alert", style="color:red;font-size:36px"><%= alert %></p>
 
-<% if params[:category].blank? %>
-
-	<%= render 'all_books' %>
+<%if params[:search] %>
+  <% if @books.present? %>
+    <%= render "book", books: @books %>
+  <% else %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+<% else %>
+    <% if params[:category].blank? %>
+	    <%= render 'all_books' %>
 	<% else %>
-	<%= render 'via_category'%>
+	    <%= render 'via_category'%>
+    <%end%>
 <%end%>
 
 <script>
