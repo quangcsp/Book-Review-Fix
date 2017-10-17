@@ -3,14 +3,18 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :get_categories, only: [:new, :edit, :create, :update]
   def index
-    if params[:category].blank?
-      #@books = Book.paginate(page: params[:page], per_page: 6).order("created_at DESC")
-      @categories = Category.all.paginate(page: params[:page], per_page: 5).order("created_at DESC")
+    if params[:search]
+      @books=Book.search(params[:search]).order("created_at DESC")
     else
-      @category_id = Category.find_by(name: params[:category])
-      # @books = Book.where(:category_id => @category_id).order("created_at DESC")
-      @books = @category_id.books.paginate(page: params[:page],per_page: 4)
-      @category_name = @category_id.name
+      if params[:category].blank?
+        #@books = Book.paginate(page: params[:page], per_page: 6).order("created_at DESC")
+        @categories = Category.all.paginate(page: params[:page], per_page: 5).order("created_at DESC")
+      else
+        @category_id = Category.find_by(name: params[:category])
+        # @books = Book.where(:category_id => @category_id).order("created_at DESC")
+        @books = @category_id.books.paginate(page: params[:page],per_page: 4)
+        @category_name = @category_id.name
+      end
     end
   end
 
@@ -80,4 +84,5 @@ class BooksController < ApplicationController
   def get_categories
     @categories = Category.all
   end
+  
 end
