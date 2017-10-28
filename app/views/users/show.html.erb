@@ -3,7 +3,7 @@
   <div class="col-md-2">
     <%= image_tag @user.avatar.url(:medium), class: "round-image-150" %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-7">
     <h1><%= @user.name %></h1>
     <h3>
       <span class="glyphicon glyphicon-envelope"><%= @user.email %></span>
@@ -16,6 +16,64 @@
       <% end %>
     </h3>
   </div>
+  <div class="col-md-3">
+    <% if user_signed_in? && current_user != @user %>
+    <section id="follow" style="height: 150px">
+      <% if current_user.liked? @user  %>
+        <% follow = Vote.find_by votable_type: "User", votable_id: @user.id, voter_id: current_user.id %>
+        <%= render "users/unfollow", follow: follow %>
+      <% else %>
+        <%= render "users/follow", user_id: @user.id %>
+      <% end %>
+    </section>
+    <% end %>
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Following')" id="defaultOpen">Following</button>
+      <button class="tablinks" onclick="openCity(event, 'Followers')">Followers</button>
+    </div>
+
+    <div id="Following" class="tabcontent">
+      <% if @following.any? %>
+        <ol class="microposts">
+          <%= render @following %>
+        </ol>
+        <%= will_paginate @following %>
+      <% else %>
+        No following to show.
+      <% end %>
+    </div>
+
+    <div id="Followers" class="tabcontent">
+      <% if @followers.any? %>
+        <ol class="microposts">
+          <%= render @followers %>
+        </ol>
+        <%= will_paginate @followers %>
+      <% else %>
+      No followers to show.  
+      <% end %> 
+    </div>
+
+  </div>
 
 </div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   acts_as_voter
+  acts_as_votable
 
   has_many :books
   has_many :reviews, :dependent => :delete_all
@@ -44,8 +45,6 @@ class User < ApplicationRecord
     end
   end
 
-
-
   def avatar_remote_url=(url_value)
     self.avatar = URI.parse(url_value)
     # Assuming url_value is http://example.com/photos/face.png
@@ -54,6 +53,7 @@ class User < ApplicationRecord
     @avatar_remote_url = url_value
   end
 
-
-
+  def feed
+    Review.priority(self).most_recent
+  end
 end

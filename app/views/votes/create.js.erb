@@ -1,3 +1,8 @@
-$("#like<%=@review.id%>").html('<%= j render "reviews/unlike", like: Vote\
-		.find_by(votable_id: @review.id, voter_id: current_user.id) %>');
-$("#numberoflikes<%=@review.id%>").html('<%= j render "reviews/stats", review: @review %>');
+<% if @type.eql? "Review"%>
+$("#like<%=@votable.id%>").html('<%= j render "reviews/unlike", like: Vote\
+		.find_by(votable_type: "Review", votable_id: @votable.id, voter_id: current_user.id) %>');
+$("#numberoflikes<%=@votable.id%>").html('<%= j render "reviews/stats", review: @votable %>');
+<% else %>
+$("#follow").html('<%= j render "users/unfollow", follow: Vote\
+		.find_by(votable_type: "User", votable_id: @votable.id, voter_id: current_user.id) %>');
+<% end %>

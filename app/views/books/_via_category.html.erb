@@ -4,6 +4,15 @@
 	    <h1>There are no books currently in this category</h1>
 
 	<% else %>
+		<% if user_signed_in?
+				book_ids = current_user.feed.select(:book_id)
+				temp_books = @books.where(id: book_ids).to_a
+				@books.where("books.id NOT IN (?)", book_ids).each do |book|
+					temp_books << book
+				end
+				@books = temp_books
+			end
+		%>
 		<% @books.in_groups_of(2, false).each do |group| %>
 			<div class="row">
 			  <% group.each do |book| %>
@@ -27,6 +36,19 @@
 						      		<div class="average-review-rating" data-score=<%= average_review %>></div>
 						      		<div class="book-authorinfo">
 						      			<p>Author: <%= book.author %></p>
+						      			<p>
+						      			<% if user_signed_in?
+						      					if current_user.id == book.reviewer_followed_by(current_user)
+						      						from_time = Review.find_by(user_id: current_user.id, book_id: book.id).created_at 
+						      			%>
+						      						You reviewed this <%= time_ago_in_words from_time %> ago.
+						      				<% elsif reviewer = User.find_by(id: book.reviewer_followed_by(current_user))
+						      					name = reviewer.name ? reviewer.name : reviewer.email 
+						      					from_time = Review.find_by(user_id: reviewer.id, book_id: book.id).created_at %>
+						      					Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.%>
+						      				<% end %>
+						      			<% end %>
+						      			</p>
 						      		</div>
 					      		</div>
 					      	</div>
