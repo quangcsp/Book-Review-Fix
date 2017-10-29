@@ -36,35 +36,35 @@
 					      		<div class="col-md-6">
 					      			<div class="book-contentinfo">
 						      			<a href="/books/<%= book.id %>"><font color="808080"><h3><%= book.title %></h3></font></a>
-						      			<p><%= book.description %></p>
+						      			<p><%= book.description.truncate_words(75) %></p>
 						      		</div>
 						      		<div class="average-review-rating" data-score=<%= average_review %>></div>
 						      		<div class="book-authorinfo">
 						      			<p>Author: <%= book.author %></p>
-						      			
+						      			<% if user_signed_in?
+								      	  reviewer_id = book.reviewer_followed_by(current_user)
+								      		reviewer = User.find_by(id: reviewer_id)
+								      		if reviewer
+									      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
+										      		if current_user.id == reviewer_id
+										      			from_time = review.created_at %>
+										      			<blockquote class="remove"> <%= review.comment.truncate_words(5) %>
+														 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+																</blockquote>	
+								      				<% else
+								      					name = reviewer.name ? reviewer.name : reviewer.email 
+								      					from_time = review.created_at %>
+								      					<blockquote class="remove"><%= review.comment.truncate_words(5) %> 
+								      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+																</blockquote>
+								      				<% end %>
+										      	<% end %>	
+									      	<% end %>
 						      		</div>
 					      		</div>
 					      		
 					      </div>
-					      	<% if user_signed_in?
-					      	  reviewer_id = book.reviewer_followed_by(current_user)
-					      		reviewer = User.find_by(id: reviewer_id)
-					      		if reviewer
-						      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
-							      		if current_user.id == reviewer_id
-							      			from_time = review.created_at %>
-							      			<blockquote> <%= review.comment %>
-											 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
-													</blockquote>	
-					      				<% else
-					      					name = reviewer.name ? reviewer.name : reviewer.email 
-					      					from_time = review.created_at %>
-					      					<blockquote><%= review.comment %> 
-					      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
-													</blockquote>
-					      				<% end %>
-							      	<% end %>	
-						      	<% end %>
+					      	
 					      </div>	      	
 					     </div>
 			  <% end %>
