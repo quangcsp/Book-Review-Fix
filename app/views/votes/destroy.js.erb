@@ -4,3 +4,4 @@ $("#numberoflikes<%=@votable.id%>").html('<%= j render "reviews/stats", review: 
 <% else %>
 $("#follow").html('<%= j render "users/follow", user_id: @votable.id %>');
 <% end %>
+

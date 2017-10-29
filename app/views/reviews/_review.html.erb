@@ -1,5 +1,9 @@
 <div class="review-rating" data-score="<%= review.rating  %>"></div>
+<% if review.user.name.blank? %>
 	<%= review.comment %> - <%= review.user.email %>
+<% else %>
+    <%= review.comment %> - <%= review.user.name %>
+<% end %>
 
 	<br>
 <div id="numberoflikes<%= review.id %>">

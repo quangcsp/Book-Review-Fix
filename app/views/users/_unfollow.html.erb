@@ -2,3 +2,20 @@
 	<div><%= hidden_field_tag :votable_type, "User" %></div>
 	<%= f.submit "Unfollow", class: "btn" %>
 <% end %>
+<script type='text/javascript'>
+
+    (function()
+    {
+        if( window.localStorage )
+        {
+            if( !localStorage.getItem('firstLoad') )
+            {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+            }
+            else
+                localStorage.removeItem('firstLoad');
+        }
+    })();
+
+</script>
