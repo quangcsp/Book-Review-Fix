@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @following = @user.get_voted(User).paginate(page: params[:page],per_page: 4)
+    @followers = @user.votes_for.up.by_type("User").voters.paginate(page: params[:page],per_page: 4)
   end
 
   def destroy

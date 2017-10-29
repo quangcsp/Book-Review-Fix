@@ -1,2 +1,6 @@
-$("#like<%=@review.id%>").html('<%= j render "reviews/like", review: @review %>');
-$("#numberoflikes<%=@review.id%>").html('<%= j render "reviews/stats", review: @review %>');
+<% if @type.eql? "Review"%>
+$("#like<%=@votable.id%>").html('<%= j render "reviews/like", review: @votable %>');
+$("#numberoflikes<%=@votable.id%>").html('<%= j render "reviews/stats", review: @votable %>');
+<% else %>
+$("#follow").html('<%= j render "users/follow", user_id: @votable.id %>');
+<% end %>

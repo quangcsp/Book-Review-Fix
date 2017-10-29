@@ -15,4 +15,9 @@ class Book < ApplicationRecord
     where("author LIKE ?", "%#{search}%")
     where("description LIKE ?", "%#{search}%")
   end
+
+  def reviewer_followed_by user
+    return nil unless review = reviews.priority(user).most_recent.first
+    review.user_id
+  end
 end

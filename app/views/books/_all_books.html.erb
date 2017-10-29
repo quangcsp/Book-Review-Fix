@@ -1,14 +1,23 @@
 <% @categories.each do |category| 
 	category_Arr = (0..@categories.count)
 	#books = category.books.paginate(page: params[category.name],per_page: 4)
-	books = category.books.limit(4)%>
+	if user_signed_in?
+		book_ids = current_user.feed.select(:book_id)
+		books = category.books.where(id: book_ids).to_a
+		category.books.where("books.id NOT IN (?)", book_ids).each do |book|
+			books << book
+		end
+	else
+		books = category.books
+	end
+			%>
 	<div class="page-header"><h3><%= category.name %></h3></div>
 	<% if books.count == 0 %>
 
 	    <h1>There are no books currently in this category</h1>
 
 	<% else %>
-		<% books.in_groups_of(2, false).each do |group| %>
+		<% books.take(4).in_groups_of(2, false).each do |group| %>
 			<div class="row">
 			  <% group.each do |book| %>
 			  	<% if book.reviews.blank?
@@ -17,7 +26,8 @@
 	      			average_review = book.reviews.average(:rating)
 	    		end %>
 			  			<div class="col-md-6">
-			  				<div class="row box">
+			  				<div class="row box" style="height: auto">
+			  				<div class="row" >
 					      		<div class="col-md-6"  style="padding-left: 0px;">
 					      			<a href="/books/<%= book.id %>">
 					        		<%= image_tag book.book_img.url(:book_index), class: "book" %>
@@ -31,9 +41,29 @@
 						      		<div class="average-review-rating" data-score=<%= average_review %>></div>
 						      		<div class="book-authorinfo">
 						      			<p>Author: <%= book.author %></p>
+						      			
 						      		</div>
 					      		</div>
+					      		
 					      	</div>
+					      	<% if user_signed_in?
+					      	  reviewer_id = book.reviewer_followed_by(current_user)
+					      		reviewer = User.find_by(id: reviewer_id)
+					      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
+						      		if current_user.id == reviewer_id
+						      			from_time = review.created_at %>
+						      			<blockquote> <%= review.comment %>
+										 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+												</blockquote>	
+				      				<% else
+				      					name = reviewer.name ? reviewer.name : reviewer.email 
+				      					from_time = review.created_at %>
+				      					<blockquote><%= review.comment %> 
+				      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+												</blockquote>
+				      				<% end %>
+						      		<% end %>	
+					      	</div>	      	
 					     </div>
 			  <% end %>
 	    </div>
