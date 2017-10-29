@@ -45,25 +45,27 @@
 						      		</div>
 					      		</div>
 					      		
-					      	</div>
+					      </div>
 					      	<% if user_signed_in?
 					      	  reviewer_id = book.reviewer_followed_by(current_user)
 					      		reviewer = User.find_by(id: reviewer_id)
-					      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
-						      		if current_user.id == reviewer_id
-						      			from_time = review.created_at %>
-						      			<blockquote> <%= review.comment %>
-										 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
-												</blockquote>	
-				      				<% else
-				      					name = reviewer.name ? reviewer.name : reviewer.email 
-				      					from_time = review.created_at %>
-				      					<blockquote><%= review.comment %> 
-				      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
-												</blockquote>
-				      				<% end %>
-						      		<% end %>	
-					      	</div>	      	
+					      		if reviewer
+						      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
+							      		if current_user.id == reviewer_id
+							      			from_time = review.created_at %>
+							      			<blockquote> <%= review.comment %>
+											 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+													</blockquote>	
+					      				<% else
+					      					name = reviewer.name ? reviewer.name : reviewer.email 
+					      					from_time = review.created_at %>
+					      					<blockquote><%= review.comment %> 
+					      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+													</blockquote>
+					      				<% end %>
+							      	<% end %>	
+						      	<% end %>
+					      </div>	      	
 					     </div>
 			  <% end %>
 	    </div>

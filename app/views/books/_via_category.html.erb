@@ -13,16 +13,18 @@
 				@books = temp_books
 			end
 		%>
+
 		<% @books.in_groups_of(2, false).each do |group| %>
 			<div class="row">
 			  <% group.each do |book| %>
-			  	<% if book.reviews.blank?
+			  	<%if book.reviews.blank?
 	      			average_review = 0
-	    		else
+	    			else
 	      			average_review = book.reviews.average(:rating)
-	    		end %>
-			  			<div class="col-md-6">
-			  				<div class="row box">
+	    			end %>
+			  <div class="col-md-6">
+			  				<div class="row box" style="height: auto">
+			  				<div class="row" >
 					      		<div class="col-md-6"  style="padding-left: 0px;">
 					      			<a href="/books/<%= book.id %>">
 					        		<%= image_tag book.book_img.url(:book_index), class: "book" %>
@@ -36,23 +38,33 @@
 						      		<div class="average-review-rating" data-score=<%= average_review %>></div>
 						      		<div class="book-authorinfo">
 						      			<p>Author: <%= book.author %></p>
-						      			<p>
-						      			<% if user_signed_in?
-						      					if current_user.id == book.reviewer_followed_by(current_user)
-						      						from_time = Review.find_by(user_id: current_user.id, book_id: book.id).created_at 
-						      			%>
-						      						You reviewed this <%= time_ago_in_words from_time %> ago.
-						      				<% elsif reviewer = User.find_by(id: book.reviewer_followed_by(current_user))
-						      					name = reviewer.name ? reviewer.name : reviewer.email 
-						      					from_time = Review.find_by(user_id: reviewer.id, book_id: book.id).created_at %>
-						      					Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.%>
-						      				<% end %>
-						      			<% end %>
-						      			</p>
+						      			
 						      		</div>
 					      		</div>
-					      	</div>
-					     </div>
+					      </div>
+					      	<% if user_signed_in?
+					      	  reviewer_id = book.reviewer_followed_by(current_user)
+					      		reviewer = User.find_by(id: reviewer_id)
+					      		if reviewer
+						      		review = Review.find_by(user_id: reviewer.id, book_id: book.id)
+						      		if current_user.id == reviewer_id
+						      			from_time = review.created_at
+							    %>
+						      			<blockquote> <%= review.comment %>
+										 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+												</blockquote>	
+		      						<% else
+				      					name = reviewer.name ? reviewer.name : reviewer.email 
+				      					from_time = review.created_at 
+				      				%>
+				      					<blockquote><%= review.comment %> 
+				      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+												</blockquote>
+				      				<% end %>
+							      <% end %>	
+						      <% end %>
+					    </div>
+				</div>
 			  <% end %>
 	    </div>
 		<% end %>
