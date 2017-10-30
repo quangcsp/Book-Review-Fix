@@ -8,7 +8,7 @@
 
 $gray-medium-light: #eaeaea;
 body {
-  background-image: image-url('background_image_4.jpg');
+  background-image: image-url('background_image_3.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -218,10 +218,10 @@ footer {
   float:right;
 }
 
-.background-image-layout{
-
-  background-image: image-url('background2.jpg'); // link to /assets/images/texture.png
-}
+//.background-image-layout{
+//
+//  background-image: image-url('background2.jpg'); // link to /assets/images/texture.png
+//}
 
 blockquote.remove:after {
     content: "";
