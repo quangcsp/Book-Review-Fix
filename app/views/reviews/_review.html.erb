@@ -1,9 +1,5 @@
 <div class="review-rating" data-score="<%= review.rating  %>"></div>
-<% if review.user.name.blank? %>
-	<%= review.comment %> - <%= review.user.email %>
-<% else %>
-    <%= review.comment %> - <%= review.user.name %>
-<% end %>
+  <%= review.comment %> - <%= link_to get_user_name(review.user.id), review.user %>
 
 	<br>
 <div id="numberoflikes<%= review.id %>">
@@ -11,6 +7,7 @@
 </div>
 
 <% if user_signed_in? %>
+  <div class="col-md-1">
 	<section id="like<%= review.id %>">
 	  <% if current_user.liked? review  %>
 	  	<% like = Vote.find_by votable_type: "Review", votable_id: review.id, voter_id: current_user.id %>
@@ -19,14 +16,16 @@
 	    <%= render "reviews/like", review: review %>
 	 	<% end %>
  	</section>
-
+  </div>
+  <div class="col-md-8">
 	<%= link_to "Comment", book_review_path(@book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit" %>
 
   <% if can? :update, review %>
-    <%= link_to "Edit", edit_book_review_path(review.book, review) %>
+    <%= link_to "Edit", edit_book_review_path(review.book, review), :class => "btn btn-primary button-edit btn-sm", :id => "button-edit"  %>
   <% end %>
   <% if can? :destroy, review %>
-  	<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"} %>
+  	<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn btn-danger button-edit btn-sm", :id => "button-edit"%>
   <% end %>
+  </div>
 <%end %>
 <br><br>
