@@ -1,10 +1,68 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@font-face {
+  font-family: 'Genkai-Mincho';
+  src: font-url('genkai-mincho.ttf') format("truetype");
+}
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+body {
+  background-image: image-url('background_image_4.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
 
+.custom-navbar {
+  margin: 0;
+  text-align: center;
+  margin: 0 auto;
+  text-transform: uppercase;
+  border-bottom: 5px solid #000;
+  border-top: 2px solid #000;
+  background: #222;
+  font-family: 'Genkai-Mincho';
+}
+
+.custom-footer {
+  margin: 0;
+  text-align: center;
+  margin: 0 auto;
+  text-transform: uppercase;
+  border-top: 5px solid #000;
+  border-bottom: 2px solid #000;
+  background: #222;
+  font-family: 'Genkai-Mincho';
+  color: #730E15 !important;
+}
+
+.red-text {
+  color: #730E15 !important;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 8em;
+  right: 15px;
+  text-decoration: none;
+  color: #000000;
+  background-color: rgba(235, 235, 235, 0.80) !important;
+  font-size: 12px;
+  display: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  img {
+    width: 50px;
+    height: auto;
+  }
+}
+
+.back-to-top:hover {
+  background-color: rgba(135, 135, 135, 0.50);
+}
 // book_img resize  using in books/index.html.erb
 .book {
 	height: 100%;

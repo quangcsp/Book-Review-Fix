@@ -13,7 +13,7 @@
 	    <%= render 'via_category'%>
     <%end%>
 <%end%>
-
+<%= link_to image_tag('back_to_top.png'), '#', class: 'back-to-top' %>
 <script>
     $('.average-review-rating').raty({
         readOnly: true,
@@ -21,5 +21,25 @@
         score: function() {
             return $(this).attr('data-score')
         }
+    });
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+        var offset = 220;
+        var duration = 500;
+        jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+                jQuery('.back-to-top').fadeIn(duration);
+            } else {
+                jQuery('.back-to-top').fadeOut(duration);
+            }
+        });
+
+        jQuery('.back-to-top').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, duration);
+            return false;
+        })
     });
 </script>
