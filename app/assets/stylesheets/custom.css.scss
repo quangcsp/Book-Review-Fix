@@ -65,8 +65,8 @@ body {
 }
 // book_img resize  using in books/index.html.erb
 .book {
-	height: 100%;
-  	width: 100%;
+	height: 475px;
+  width: 100%;
 }
 
 // book_img resize  using in books/show.html.erb
@@ -107,7 +107,7 @@ body {
 }
 
 .book-contentinfo {
-	height: 275px;
+	height: 325px;
 	overflow: hidden;
 	margin-bottom: 10px;
 }
@@ -123,6 +123,7 @@ body {
     overflow: hidden;
     margin-left: 10px;
     margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* footer */
@@ -215,4 +216,60 @@ footer {
 
 .float-right{
   float:right;
+}
+
+.background-image-layout{
+
+  background-image: image-url('background2.jpg'); // link to /assets/images/texture.png
+}
+
+blockquote.remove:after {
+    content: "";
+
+}
+
+blockquote.remove:before {
+    content: "";
+}
+
+blockquote.remove{
+  border-left-width: 0px;
+  padding-left:0px;
+  width:250px;
+}
+
+.tab{
+  display:inline;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.userlist {
+  tr:nth-child(odd) {
+    background-color: #eeeeee;
+  }
+}
+
+.userlist-header{
+  background-color: #5D7B9D;
+  color: #ffffff;
+  .function {
+    text-align: center;
+  }
 }

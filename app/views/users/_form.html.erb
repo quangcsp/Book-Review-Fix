@@ -4,5 +4,5 @@
   <% else %>
     <%= f.select :admin, options_for_select([["Admin", true], ["Regular", false]],selected: user.admin)%>
   <% end %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-primary pull-right" %>
 <% end %>
