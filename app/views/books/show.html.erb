@@ -15,15 +15,6 @@
       <%= link_to category.name, books_path(category: category.name) %>
     <% end %>
     </h4>
-
-    <%= link_to 'Back', root_path, :class => "btn btn-primary button-edit", :id => "button-edit" %>
-
-    <% if user_signed_in? %>
-      <% if @book.user_id == current_user.id %>
-        <%= link_to 'Edit', edit_book_path(@book), :class => "btn btn-primary", :id => "button-edit" %>
-        <%= link_to 'Delete', book_path(@book), :class => "btn btn-danger", :id => "button-edit", method: :delete, data: {confirm: "Are you sure?" } %>
-      <% end %>
-    <% end %>
   </div>
 </div>
 

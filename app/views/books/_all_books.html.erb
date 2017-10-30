@@ -1,4 +1,4 @@
-<% @categories.each do |category| 
+<% @categories.each do |category|
 	category_Arr = (0..@categories.count)
 	#books = category.books.paginate(page: params[category.name],per_page: 4)
 	if user_signed_in?
@@ -50,22 +50,22 @@
 										      			from_time = review.created_at %>
 										      			<blockquote class="remove"> <%= review.comment.truncate_words(5) %>
 														 		<cite>You reviewed this <%= time_ago_in_words from_time %> ago.</cite>
-																</blockquote>	
+																</blockquote>
 								      				<% else
-								      					name = reviewer.name ? reviewer.name : reviewer.email 
+								      					name = reviewer.name ? reviewer.name : reviewer.email
 								      					from_time = review.created_at %>
-								      					<blockquote class="remove"><%= review.comment.truncate_words(5) %> 
+								      					<blockquote class="remove"><%= review.comment.truncate_words(5) %>
 								      					<cite>Your friend <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
 																</blockquote>
 								      				<% end %>
-										      	<% end %>	
+										      	<% end %>
 									      	<% end %>
 						      		</div>
 					      		</div>
-					      		
+
 					      </div>
-					      	
-					      </div>	      	
+
+					      </div>
 					     </div>
 			  <% end %>
 	    </div>

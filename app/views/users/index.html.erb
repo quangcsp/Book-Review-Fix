@@ -3,21 +3,25 @@
 <h1>Users</h1>
 
 <table>
-  <thead>
+  <thead class="userlist-header">
     <tr>
       <th>Email</th>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th colspan="3" class="function">Function</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="userlist">
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
         <td><%= user.name %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% unless user.admin %>
+            <%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
+        </td>
         <td><%= render 'form', user: user %></td>
       </tr>
     <% end %>

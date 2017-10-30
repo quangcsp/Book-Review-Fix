@@ -165,13 +165,13 @@ footer {
   background-image: image-url('background2.jpg'); // link to /assets/images/texture.png
 }
 
-blockquote.remove:after {  
-    content: "";  
+blockquote.remove:after {
+    content: "";
 
-}  
+}
 
-blockquote.remove:before {  
-    content: "";  
+blockquote.remove:before {
+    content: "";
 }
 
 blockquote.remove{
@@ -182,4 +182,36 @@ blockquote.remove{
 
 .tab{
   display:inline;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.userlist {
+  tr:nth-child(odd) {
+    background-color: #eeeeee;
+  }
+}
+
+.userlist-header{
+  background-color: #5D7B9D;
+  color: #ffffff;
+  .function {
+    text-align: center;
+  }
 }
