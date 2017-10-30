@@ -10,11 +10,16 @@
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
     <span>Based on <%= @book.reviews.count %> reviews</span>
     <p><%= @book.description %></p>
-    <h4>Category:
-      <% @book.categories.all.each do |category| %>
-      <%= link_to category.name, books_path(category: category.name) %>
-    <% end %>
-    </h4>
+    <table class="bg-info">
+      <tr>
+        <td><h4>Category:
+          <% @book.categories.all.each do |category| %>
+
+          <%= link_to category.name, books_path(category: category.name) %>
+        <% end %>
+        </td></h4>
+      </tr>
+    </table>
   </div>
 </div>
 
