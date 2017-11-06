@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Latest review</h1>
+
+<table>
+  <thead class="userlist-header">
+    <tr>
+      <th width="50px">Book</th>
+      <th>Review</th>
+      <!-- <th colspan="3" class="function">Function</th> -->
+    </tr>
+  </thead>
+
+  <tbody class="userlist">
+    <% @review.each do |review| %>
+      <tr>
+        <td><%= link_to image_tag(review.book.book_img.url(:book_show), height: '300'), book_path(review.book.id) %></td>
+        <td>
+          <%= review.book.description.truncate_words(75) %>
+          <br><br>
+          <div class="review-rating" data-score="<%= review.rating  %>"></div>
+          <% reviewer = review.user %>
+          <% name = reviewer.name ? reviewer.name : reviewer.email %>
+          <% from_time = review.created_at %>
+          <blockquote class="remove"><%= review.comment %>
+          <cite>
+            <%= link_to image_tag(review.user.avatar.url(:medium), class: "round-image-50"), reviewer %>
+            <%= link_to name, reviewer %> reviewed this <%= time_ago_in_words from_time %> ago.</cite>
+          </blockquote>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @review%>
+  <div class="form-size alert alert-info" role=alert>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
+<br>
+<script>
+    $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        path: '/assets/'
+    });
+</script>

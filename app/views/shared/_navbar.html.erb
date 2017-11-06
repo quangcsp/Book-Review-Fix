@@ -4,6 +4,9 @@
 
     <div class="navbar-header" >
       <%= link_to "Book", root_path, class: "navbar-brand red-text" %>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Latest review", reviews_path, class: "red-text"  %></li>
+      </ul>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li>
