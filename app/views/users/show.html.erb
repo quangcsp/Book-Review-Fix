@@ -18,7 +18,7 @@
   </div>
   <div class="col-md-3">
     <% if user_signed_in? && current_user != @user %>
-    <section id="follow" style="height: 150px">
+    <section id="follow" style="height: 150px"  align="right">
       <% if current_user.liked? @user  %>
         <% follow = Vote.find_by votable_type: "User", votable_id: @user.id, voter_id: current_user.id %>
         <%= render "users/unfollow", follow: follow %>
@@ -27,16 +27,22 @@
       <% end %>
     </section>
     <% end %>
-    <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Following')" id="defaultOpen">Following</button>
-      <button class="tablinks" onclick="openCity(event, 'Followers')">Followers</button>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-2">    
+  </div>
+  <div class="col-md-7">   
+  </div>
+  <div class="col-md-3">
+    <div style="background-color: #ccc">
+    <button class="tablinks" onclick="openCity(event, 'Following')" id="defaultOpen">Following</button>
+    <button class="tablinks" onclick="openCity(event, 'Followers')">Followers</button>
     </div>
 
     <div id="Following" class="tabcontent">
       <% if @following.any? %>
-        <ol class="microposts">
           <%= render @following %>
-        </ol>
         <%= will_paginate @following %>
       <% else %>
         No following to show.
@@ -45,9 +51,7 @@
 
     <div id="Followers" class="tabcontent">
       <% if @followers.any? %>
-        <ol class="microposts">
           <%= render @followers %>
-        </ol>
         <%= will_paginate @followers %>
       <% else %>
         No followers to show.
@@ -55,7 +59,6 @@
     </div>
   </div>
 </div>
-
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
