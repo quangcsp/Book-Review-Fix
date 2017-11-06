@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_params_search
 
   protected
 
@@ -11,5 +12,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_male, :date_of_birth, :avatar) }
   end
 
-
+  def check_params_search
+    redirect_to root_path(search: params[:search]) if params[:search]
+  end
 end

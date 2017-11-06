@@ -10,14 +10,22 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :categories, presence: true
   
-  def self.search(search)
-    where("title LIKE ?", "%#{search}%") 
-    where("author LIKE ?", "%#{search}%")
-    where("description LIKE ?", "%#{search}%")
+  def self.search key_word
+    word = trim key_word, " ."
+    where("title LIKE ?", "%#{word}%") 
+    where("author LIKE ?", "%#{word}%")
+    where("description LIKE ?", "%#{word}%")
   end
 
   def reviewer_followed_by user
     return nil unless review = reviews.priority(user).most_recent.first
     review.user_id
+  end
+
+  private
+
+  def self.trim string, chars
+    chars = Regexp.escape chars
+    string.gsub /\A[#{chars}]+|[#{chars}]+\z/, ""
   end
 end

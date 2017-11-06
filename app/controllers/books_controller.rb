@@ -2,6 +2,8 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :get_categories, only: [:new, :edit, :create, :update]
+  skip_before_action :check_params_search, only: :index
+  
   def index
     if params[:search]
       @books=Book.search(params[:search]).order("created_at DESC")
@@ -82,5 +84,4 @@ class BooksController < ApplicationController
   def get_categories
     @categories = Category.all
   end
-
 end
