@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
   resources :reviews
   resources :votes, only: [:create, :destroy]
-
+  
   root 'books#index'
 end

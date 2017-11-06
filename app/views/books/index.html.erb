@@ -1,8 +1,11 @@
 <p id="alert", style="color:red;font-size:36px"><%= alert %></p>
 
 <%if params[:search] %>
+    <div class="page-header"><h3>Search Results</h3></div>
   <% if @books.present? %>
-    <%= render "book", books: @books %>
+    <% @books.in_groups_of(2, false).each do |group| %>
+        <%= render "book_list", group: group %>
+    <% end %>
   <% else %>
     <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
   <% end %>
