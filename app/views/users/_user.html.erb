@@ -1,6 +1,6 @@
-<li id="user-<%= user.id %>">
+<div style="height: 60px">
   <%= image_tag user.avatar.url(:medium), class: "round-image-50" %>
   <span class="user">
   <% name = user.email unless name = user.name %>
   <%= link_to name, user %></span>
-</li>
+</div>

@@ -2,31 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* Style the tab */
-div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
 /* Style the buttons inside the tab */
-div.tab button {
-    background-color: inherit;
-    float: left;
+button {
+    background-color: white;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 35px;
+    padding: 15px 34px;
     transition: 0.3s;
 }
 
 /* Change background color of buttons on hover */
-div.tab button:hover {
+button:hover {
     background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
-div.tab button.active {
+button.active {
     background-color: #ccc;
 }
 
@@ -34,5 +26,13 @@ div.tab button.active {
 .tabcontent {
     display: none;
     border-top: none;
-    background-color: #eeeeee;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.tabcontent div:nth-child(even) {
+    background-color: #ccc;
+}
+.tabcontent div:nth-child(odd) {
+   background-color: #eeeeee;
 }
