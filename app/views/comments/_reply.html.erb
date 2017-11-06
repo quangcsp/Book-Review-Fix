@@ -1,7 +1,11 @@
 <% comments.each do |comment| %>
     <div class="comments-show">
       <div class="comment">
-        <p><%= comment.body %><br></p>
+        <% if User.find_by(id: comment.user_id).name == nil %>
+            <p><%= comment.body%> -  <%= link_to User.find_by(id: comment.user_id).email, user_path(User.find_by(id: comment.user_id).id) %><br></p>
+        <% else %>
+            <p><%= comment.body%> -  <%= link_to User.find_by(id: comment.user_id).name, user_path(User.find_by(id: comment.user_id).id) %><br></p>
+        <% end %>
         <div class="comment-nav"><div href="#" class="comment-reply btn btn-primary btn-sm">Reply this</div></div>
         <div class="reply-form">
           <%= form_for [@book, @review, @new_comment] do |f| %>

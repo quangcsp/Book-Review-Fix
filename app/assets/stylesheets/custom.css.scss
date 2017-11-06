@@ -5,7 +5,9 @@
   src: font-url('genkai-mincho.ttf') format("truetype");
 }
 /* mixins, variables, etc. */
-
+#display-comment{
+  display: none;
+}
 $gray-medium-light: #eaeaea;
 body {
   background-image: image-url('background2.jpg');

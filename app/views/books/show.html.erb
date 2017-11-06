@@ -12,7 +12,7 @@
     <p><%= @book.description %></p>
     <table class="bg-info">
       <tr>
-        <td><h4>Category:
+        <h4><td>Category:
           <% @book.categories.all.each do |category| %>
 
           <%= link_to category.name, books_path(category: category.name) %>
