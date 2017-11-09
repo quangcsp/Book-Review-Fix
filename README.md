@@ -3,22 +3,5 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1, copy development.sqlite3 vao db/
+2, chạy db:migrate => bao loi, cac ong xem tren console co dong lenh khac phuc loi nay  
