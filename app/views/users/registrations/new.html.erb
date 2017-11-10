@@ -1,17 +1,32 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+<div class="middlePage">
+  <div class="page-header">
+    <h1 class="logo">NoName    <small>Welcome to our place!</small></h1>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">Sign up</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4" >
+          <%= render "users/shared/links" %>
+        </div>
+        <div class="col-md-7" style="border-left:1px solid #ccc;height:30%; padding-left: 8%; padding-right: 5%;">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+          
+            <div class="form-inputs">
+              <%= f.input :email, required: true, autofocus: true %>
+              <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+              <%= f.input :password_confirmation, required: true %>
+            </div>
+          
+            <div class="form-actions">
+              <%= f.button :submit, "Sign up", class: "btn btn-info pull-right" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></br>
-<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+</div>

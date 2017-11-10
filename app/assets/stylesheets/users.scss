@@ -36,3 +36,21 @@ button.active {
 .tabcontent div:nth-child(odd) {
    background-color: #eeeeee;
 }
+
+.middlePage {
+	width: 800px;
+    height: 500px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.logo {
+	color: #000000;
+}
+
+.my-sign-up {
+    font-size: 30px;
+}

@@ -16,6 +16,7 @@ gem 'acts_as_commentable_with_threading', '~> 2.0', '>= 2.0.1'
 gem 'hirb', '~> 0.7.3'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.5.2'
+gem 'bootstrap-social-rails'
 # ▲
 
 gem 'will_paginate',           '3.1.5'
