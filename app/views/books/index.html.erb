@@ -11,9 +11,9 @@
   <% end %>
 <% else %>
     <% if params[:category].blank? %>
-	    <%= render 'all_books' %>
-	<% else %>
-	    <%= render 'via_category'%>
+        <%= render 'all_books' %>
+    <% else %>
+        <%= render 'via_category'%>
     <%end%>
 <%end%>
 <%= link_to image_tag('back_to_top.png'), '#', class: 'back-to-top' %>

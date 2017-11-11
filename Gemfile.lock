@@ -104,6 +104,8 @@ GEM
       railties (>= 3.2, < 5.2)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.6)
@@ -291,6 +293,7 @@ DEPENDENCIES
   devise (~> 4.3)
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
   font-awesome-sass (~> 4.7)
+  font-ionicons-rails
   hirb (~> 0.7.3)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
