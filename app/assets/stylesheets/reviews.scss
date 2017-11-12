@@ -2,3 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 a.link:hover {background-color: white}
+.tip-left {
+    position: relative;
+}
+.tip-left::before {
+    margin-left: 25px;
+    color: #fec826;
+    content: "\f0e2";
+    display: inline-block;
+    font-family: icofont;
+    font-size: 16px;
+    left: -25px;
+    position: absolute;
+    top: 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.test {
+    width: 1000px !important; height: 300px !important; margin-left: -150px !important;
+}
+
